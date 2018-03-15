@@ -2,6 +2,8 @@ package com.boot.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +16,17 @@ import com.boot.model.Customer;
 import com.boot.service.CustomerService;
 @Controller
 public class CustomerController {
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	CustomerService customerService;
  
 	@RequestMapping(value = "/getAllCustomers", method = RequestMethod.GET, headers = "Accept=application/json")
 	public String getAllCustomers(Model model) {
- 
+		LOGGER.debug("This is a debug message");
+	    LOGGER.info("This is an info message");
+	    LOGGER.warn("This is a warn message");
+	    LOGGER.error("This is an error message");
 		List<Customer> listOfCustomers = customerService.getAllCustomers();
 		model.addAttribute("customer", new Customer());
 		model.addAttribute("listOfCustomers", listOfCustomers);
@@ -28,7 +35,7 @@ public class CustomerController {
  
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String goToHomePage() {
-		return "customerDetails";
+		return "redirect:getAllCustomers";
 	}
 	
 	@RequestMapping(value = "/getCustomer/{id}", method = RequestMethod.GET, headers = "Accept=application/json")

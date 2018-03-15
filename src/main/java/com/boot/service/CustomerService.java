@@ -10,22 +10,22 @@ import org.springframework.transaction.annotation.Transactional;
 import com.boot.dao.CustomerDao;
 import com.boot.model.Customer;
 @Service("customerService")
-@Transactional
+
 public class CustomerService {
 	@Autowired
 	CustomerDao customerDao;
  
-	
+	@Transactional
 	public List<Customer> getAllCustomers() {
 		return customerDao.getAllCustomers();
 	}
  
-
+	@Transactional
 	public Customer getCustomer(int id) {
 		return customerDao.getCustomer(id);
 	}
  
-	
+	@Transactional
 	public void addCustomer(Customer customer) {
 		customerDao.addCustomer(customer);
 	}
@@ -36,7 +36,7 @@ public class CustomerService {
  
 	}
  
-	
+	@Transactional
 	public void deleteCustomer(int id) {
 		customerDao.deleteCustomer(id);
 	}

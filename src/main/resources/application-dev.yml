@@ -1,0 +1,7 @@
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: ERROR
+    com.boot: ERROR
+    org.hibernate: ERROR
+    file: /logs/application-debug.log
